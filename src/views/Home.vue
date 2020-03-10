@@ -14,14 +14,15 @@
     </b-container>
     <b-container
       tag="section"
-      class="Home__content"
+      class="Home__content py-5"
     >
       <b-row>
         <b-col 
+          md="4"
           v-for="poke in GET_POKEMON"
           v-bind:key="poke.name"
         >
-          <PokeItem v-bind:poke="poke" />
+          <PokeCard v-bind:poke="poke" />
         </b-col>
       </b-row>
     </b-container>
@@ -31,7 +32,7 @@
 <script>
 import {mapGetters} from 'vuex'
 import AppLogo from '../components/AppLogo/'
-import PokeItem from '../components/PokeItem/'
+import PokeCard from '../components/PokeCard/'
 
 export default {
   name: 'Home',
@@ -43,7 +44,7 @@ export default {
   },
   components: {
     AppLogo,
-    PokeItem
+    PokeCard
   }
 }
 </script>
