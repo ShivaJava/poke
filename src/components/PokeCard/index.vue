@@ -1,8 +1,10 @@
 <template>
-  <b-card class="PokeCard mb-4">
-    <pre>
-      {{pokeData.name}}
-    </pre>
+  <b-card 
+    bg-variant="warning"
+    :header="pokeData.name"
+    class="PokeCard mb-4"
+  >
+    <b-card-img :src="pokeData.sprites.front_shiny" />
   </b-card>
 </template>
 
@@ -19,7 +21,8 @@ export default {
     props: ['poke'],
     mounted() {
       axios.get(`${process.env.VUE_APP_API_HOST}/pokemon/${this.$props.poke.name}`)
-        .then(({data}) => {
+        .then(({data}) => {     
+          console.log(data);
           this.pokeData = data
         })
         .catch(error => console.log(error))

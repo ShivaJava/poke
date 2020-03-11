@@ -18,7 +18,7 @@
     >
       <b-row>
         <b-col 
-          md="4"
+          md="3"
           v-for="poke in GET_POKEMON"
           v-bind:key="poke.name"
         >
