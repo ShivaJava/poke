@@ -1,5 +1,5 @@
 <template>
-    <main class="AppMain bg-warning">
+    <main class="AppMain">
         <slot/>    
     </main>
 </template>
