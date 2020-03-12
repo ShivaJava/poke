@@ -26,7 +26,13 @@
         </b-col>
       </b-row>
     </b-container>
-    <AppPagination />
+    <b-container>
+      <b-row>
+        <b-col>
+          <AppPagination />
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
