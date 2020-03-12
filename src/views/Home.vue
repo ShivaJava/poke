@@ -26,6 +26,7 @@
         </b-col>
       </b-row>
     </b-container>
+    <AppPagination />
   </div>
 </template>
 
@@ -33,6 +34,7 @@
 import {mapGetters} from 'vuex'
 import AppLogo from '../components/AppLogo/'
 import PokeCard from '../components/PokeCard/'
+import AppPagination from '../components/AppPagination/'
 
 export default {
   name: 'Home',
@@ -44,7 +46,8 @@ export default {
   },
   components: {
     AppLogo,
-    PokeCard
+    PokeCard,
+    AppPagination
   }
 }
 </script>
