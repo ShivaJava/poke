@@ -27,8 +27,7 @@ export default {
     props: ['poke'],
     created() {
       axios.get(`${process.env.VUE_APP_API_HOST}/pokemon/${this.$props.poke.name}`)
-        .then(({data}) => {   
-          console.log(data) 
+        .then(({data}) => {  
           this.pokeData = data
         })
         .catch(error => console.log(error))

@@ -29,7 +29,7 @@
     <b-container>
       <b-row>
         <b-col>
-          <AppPagination />
+          <b-pagination-nav :number-of-pages="$store.getters.GET_PAGE.max" use-router></b-pagination-nav>
         </b-col>
       </b-row>
     </b-container>
@@ -40,7 +40,6 @@
 import {mapGetters} from 'vuex'
 import AppLogo from '../components/AppLogo/'
 import PokeCard from '../components/PokeCard/'
-import AppPagination from '../components/AppPagination/'
 
 export default {
   name: 'Home',
@@ -52,8 +51,7 @@ export default {
   },
   components: {
     AppLogo,
-    PokeCard,
-    AppPagination
+    PokeCard
   }
 }
 </script>
