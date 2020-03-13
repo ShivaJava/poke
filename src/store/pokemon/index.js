@@ -11,7 +11,11 @@ import {
 export default {
     state: {
         status: 'listen',
-        pokemon: []
+        pokemon: [],
+        page: {
+            limit: 5,
+            offset: 0,
+        }
     },
     mutations: {
         [POKEMON_REQUEST](state) {
@@ -27,9 +31,9 @@ export default {
         }
     },
     actions: {
-        [GET_POKEMON_REQUEST]({commit}) {
-            commit(POKEMON_REQUEST)
-            axios.get(`${process.env.VUE_APP_API_HOST}/pokemon`)
+        [GET_POKEMON_REQUEST]({commit, state}, limit = state.page.limit, offset = state.page.offset) {
+            commit(POKEMON_REQUEST)            
+            axios.get(`${process.env.VUE_APP_API_HOST}/pokemon/?limit=${limit}&offset=${offset}`)
                 .then(({data}) => {                   
                     commit(POKEMON_SUCCESS, data.results)
                 })
