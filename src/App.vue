@@ -8,6 +8,7 @@
 </template>
 
 <script>  
+import 'hooper/dist/hooper.css'
 import AppHeader from "./components/AppHeader/"
 import AppMain from "./components/AppMain/"
 
@@ -19,4 +20,9 @@ export default {
   }
 }
 </script>  
+
+<style lang="scss">
+  @import './assets/scss/b-custom.scss';
+  @import './assets/scss/hooper.scss';
+</style>   
 

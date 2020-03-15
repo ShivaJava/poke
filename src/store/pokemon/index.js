@@ -6,30 +6,21 @@ import {
     POKEMON_ERROR,
     GET_POKEMON_REQUEST,
     GET_POKEMON,
-    GET_PAGE
-} from './constans'
+    SET_PAGE
+} from '../constans'
 
 export default {
     state: {
         status: 'listen',
         pokemon: [],
-        page: {
-            current: 0,
-            max: null,
-            limit: 20,
-            offset: 0,
-            count: null,
-        }
     },
     mutations: {
         [POKEMON_REQUEST](state) {
             state.status = 'request'
         },
-        [POKEMON_SUCCESS](state, data) {
+        [POKEMON_SUCCESS](state, data) {                      
             state.status = 'succes'
-            state.pokemon = [...state.pokemon, ...data.results]
-            state.page.count = data.count
-            state.page.max = Math.ceil(+data.count / state.page.limit) 
+            state.pokemon = data.results // [...state.pokemon, ...data.results]
         },
         [POKEMON_ERROR](state, error) {
             state.status = 'error'
@@ -37,19 +28,24 @@ export default {
         }
     },
     actions: {
-        [GET_POKEMON_REQUEST]({commit, state}, limit = state.page.limit, offset = state.page.offset) {
-            commit(POKEMON_REQUEST)            
-            axios.get(`${process.env.VUE_APP_API_HOST}/pokemon/?limit=${limit}&offset=${offset}`)
-                .then(({data}) => {  
-                    console.log(data);
-                                     
-                    commit(POKEMON_SUCCESS, data)
+        [GET_POKEMON_REQUEST](context, { offset = context.rootState.page.offset, limit = context.rootState.page.limit } ) {
+            context.commit(POKEMON_REQUEST)            
+            axios.get(`${process.env.VUE_APP_API_HOST}/pokemon/?offset=${offset}&limit=${limit}`)
+                .then(({data}) => {
+                    const page = {
+                        offset: offset, 
+                        limit: limit,
+                        current: (offset / limit + 1),
+                        total: Math.ceil(data.count / limit),
+                        dataCount: data.count
+                    }
+                    context.commit(SET_PAGE, page)
+                    context.commit(POKEMON_SUCCESS, data)
                 })
-                .catch(error => commit(POKEMON_ERROR, error))
+                .catch(error => context.commit(POKEMON_ERROR, error))
         }
     },
     getters: {
         [GET_POKEMON]: (state) => state.pokemon,
-        [GET_PAGE]: (state) => state.page
     }
 }

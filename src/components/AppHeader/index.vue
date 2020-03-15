@@ -6,7 +6,7 @@
         type="dark" 
         variant="danger"
     >
-        <b-navbar-brand href="#">
+        <b-navbar-brand to="/">
             <AppLogo height="40" />
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

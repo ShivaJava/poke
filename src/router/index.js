@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Page from '../views/Page.vue'
+import Pokemon from '../views/Pokemon.vue'
 
 Vue.use(VueRouter)
 
@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/pokemon/page/:number',
     name: 'PokePage',
-    component: Page
+    component: Pokemon
   }
 ]
 

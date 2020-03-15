@@ -1,9 +1,16 @@
 <template>
-  <div class="Page">
+  <div class="Pokemon">
     <b-container
       tag="section"
       class="Page__content py-5"
-    >
+    > 
+      <b-row>
+        <b-col class="d-flex align-items-center justify-content-between">
+          <h1 class="mb-3">Pokemons</h1>
+          <AppPagination 
+            v-bind:ACTION_NAME="`GET_POKEMON_REQUEST`" />
+        </b-col>
+      </b-row>
       <b-row>
         <b-col 
           md="3"
@@ -13,13 +20,8 @@
           <PokeCard v-bind:poke="poke" />
         </b-col>
       </b-row>
-    </b-container>
-    <b-container>
-      <b-row>
-        <b-col>
-          <AppPagination />
-        </b-col>
-      </b-row>
+      <AppPagination 
+            v-bind:ACTION_NAME="`GET_POKEMON_REQUEST`" />
     </b-container>
   </div>
 </template>
@@ -30,10 +32,7 @@ import PokeCard from '../components/PokeCard/'
 import AppPagination from '../components/AppPagination/'
 
 export default {
-  name: 'Page',
-  mounted() {
-    this.$store.dispatch('GET_POKEMON_REQUEST')
-  },
+  name: 'Pokemon',
   computed: {
     ...mapGetters(['GET_POKEMON'])
   },
@@ -43,3 +42,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .Page__content {
+    min-height: 100vh;
+  }
+</style>

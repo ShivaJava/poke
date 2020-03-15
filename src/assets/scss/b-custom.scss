@@ -1,4 +1,4 @@
-$white:    #fff !default;
+$white:    #fff !default; 
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
@@ -33,7 +33,7 @@ $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
 $red:     #ef5350 !default;
 $orange:  #fd7e14 !default;
-$yellow:  #ffcb05 !default;
+$yellow:  #ffe168 !default; // #ffcb05
 $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
@@ -83,6 +83,30 @@ $theme-colors: map-merge(
   ),
   $theme-colors
 );
+
+// Links
+//
+// Style anchor elements.
+$link-color: $danger !default;
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$component-active-bg:               $danger !default;
+
+// Pagination
+$pagination-color:                  $white !default;
+$pagination-bg:                     lighten($danger, 6.25%) !default;
+$pagination-border-color:           lighten($danger, 12.5%) !default;
+
+$pagination-hover-color:            $white !default;
+$pagination-hover-bg:               lighten($danger, 3.125%) !default;
+$pagination-hover-border-color:     lighten($danger, 6.25%) !default;
+
+$pagination-disabled-color:         $white !default;
+$pagination-disabled-bg:            lighten($danger, 12.5%) !default;
+$pagination-disabled-border-color:  $pagination-border-color !default;
 
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';

@@ -15,7 +15,19 @@
     <b-container
       tag="section"
       class="Home__content py-5"
-    >
+    > 
+      <b-row>
+        <b-col class="d-flex align-items-center justify-content-between">
+          <h1 class="mb-3">Pokemons</h1>
+          <b-button 
+            size="sm"
+            variant="outline-danger"
+            to="/pokemon/page/1"
+          >
+            See more
+          </b-button>
+        </b-col>
+      </b-row>
       <b-row>
         <b-col 
           md="3"
@@ -25,11 +37,16 @@
           <PokeCard v-bind:poke="poke" />
         </b-col>
       </b-row>
-    </b-container>
-    <b-container>
       <b-row>
-        <b-col>
-          <b-pagination-nav :number-of-pages="$store.getters.GET_PAGE.max" use-router></b-pagination-nav>
+        <b-col class="d-flex align-items-center justify-content-between">
+          <h1 class="mb-3">Abilities</h1>
+          <b-button 
+            size="sm"
+            variant="outline-danger"
+            to="/pokemon/page/1"
+          >
+            See more
+          </b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -44,7 +61,7 @@ import PokeCard from '../components/PokeCard/'
 export default {
   name: 'Home',
   mounted() {
-    this.$store.dispatch('GET_POKEMON_REQUEST')
+    this.$store.dispatch('GET_POKEMON_REQUEST', { offset: 0, limit: 4} )
   },
   computed: {
     ...mapGetters(['GET_POKEMON'])
