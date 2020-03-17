@@ -18,9 +18,10 @@
     > 
       <b-row>
         <b-col class="d-flex align-items-center justify-content-between">
-          <h1 class="mb-3">Pokemons</h1>
+          <h1 class="mb-3 h3 text-uppercase">Pokemons</h1>
           <b-button 
-            size="sm"
+            class="mb-3"
+            size="md"
             variant="outline-danger"
             to="/pokemon/page/1"
           >
@@ -39,9 +40,10 @@
       </b-row>
       <b-row>
         <b-col class="d-flex align-items-center justify-content-between">
-          <h1 class="mb-3">Abilities</h1>
+          <h1 class="mb-3 h3 text-uppercase">Abilities</h1>
           <b-button 
-            size="sm"
+            class="mb-3"
+            size="md"
             variant="outline-danger"
             to="/pokemon/page/1"
           >

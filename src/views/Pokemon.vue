@@ -6,7 +6,7 @@
     > 
       <b-row>
         <b-col class="d-flex align-items-center justify-content-between">
-          <h1 class="mb-3">Pokemons</h1>
+          <h1 class="mb-3 h3 text-uppercase">Pokemons</h1>
           <AppPagination 
             v-bind:ACTION_NAME="`GET_POKEMON_REQUEST`" />
         </b-col>
@@ -20,9 +20,9 @@
           <PokeCard v-bind:poke="poke" />
         </b-col>
       </b-row>
-      <AppPagination 
-            v-bind:ACTION_NAME="`GET_POKEMON_REQUEST`" />
     </b-container>
+    <AppPagination 
+      v-bind:ACTION_NAME="`GET_POKEMON_REQUEST`" /> 
   </div>
 </template>
 

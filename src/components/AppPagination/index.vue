@@ -1,12 +1,21 @@
 <template>
-  <b-pagination-nav 
-    class="AppPagination"
-    v-bind:size="size || 'md'"
-    v-bind:link-gen="linkGen" 
-    v-bind:limit="16"
-    v-bind:number-of-pages="$store.getters.GET_PAGE.total" 
-    v-on:change="getPageData"
-    use-router />
+  <b-navbar 
+      type="dark" 
+      variant="warning"
+      fixed="bottom"
+      class="shadow d-flex justify-content-center"
+      style="margin-bottom: -15px"
+    >
+      <b-pagination-nav 
+        class="AppPagination"
+        align="center"
+        v-bind:size="size || 'md'"
+        v-bind:link-gen="linkGen" 
+        v-bind:limit="25"
+        v-bind:number-of-pages="$store.getters.GET_PAGE.total" 
+        v-on:change="getPageData"
+        use-router />
+    </b-navbar>
 </template>
 
 <script>

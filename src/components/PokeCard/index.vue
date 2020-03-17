@@ -114,23 +114,37 @@ export default {
         pokeData: null,
         loaded: false,
         menu: {
-          active: 'stats',
+          active: 'sprites',
           items: ['stats', 'abilities', 'sprites']
         }
       }
     },
     props: ['poke'],
+    mounted() {
+      this.menu.active = this.randomInteger()
+    },
     created() {
       axios.get(`${process.env.VUE_APP_API_HOST}/pokemon/${this.$props.poke.name}`)
         .then(({data}) => {  
-          console.log(data);
-          
           this.pokeData = data
           setTimeout(() => {
             this.loaded = true
           }, 500)
         })
         .catch(error => console.log(error))
+        
+    },
+    computed() {
+      
+    },
+    methods: {
+      randomInteger() {
+        let rand = 1 - 0.5 + Math.random() * (this.menu.items.length - 1 + 1)
+        if(rand <= 0 ) rand = 1
+        if(rand >= 3 ) rand = 3
+        rand =  Math.round(rand) - 1
+        return this.menu.items[Math.round(rand)]
+      }
     },
     components: {
       AppPreloader,
