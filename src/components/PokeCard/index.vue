@@ -92,9 +92,16 @@
           </template>
           <hooper-navigation slot="hooper-addons"></hooper-navigation>
         </Hooper>
-
       </template>
     </b-card-body>
+    <b-card-footer>
+      <b-btn
+        block
+        variant="outline-dark"
+      >
+        More
+      </b-btn>
+    </b-card-footer>
   </b-card>
 </template>
 

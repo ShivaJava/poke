@@ -9,7 +9,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    // children: [
+    //   { path: 'people/:id', component: PeopleModal, name: 'PeopleModal' }
+    // ]
   },
   {
     path: '/pokemon/page/:number',
