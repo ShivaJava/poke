@@ -62,13 +62,13 @@
 
         <div v-if="menu.active === 'abilities'">
           <template
-            v-for="item in pokeData.abilities"
+            v-for="(item, index) in pokeData.abilities"
           > 
             <b-btn 
               size="sm"
               variant="outline-dark"
               class="mr-1 mb-1"
-              v-bind:key="item"
+              v-bind:key="index"
             >
               {{item.ability.name}}
             </b-btn>
@@ -79,11 +79,11 @@
           v-if="menu.active === 'sprites'"
           class="border border-dark rounded"
         > 
-          <template v-for="item in pokeData.sprites">
+          <template v-for="(item, index) in pokeData.sprites">
             <slide
               v-if="item"
               class="d-flex align-items-center justify-content-center"
-              v-bind:key="item"
+              v-bind:key="index"
             > 
               <b-img 
                 width="150px"
@@ -133,6 +133,10 @@ export default {
     created() {
       axios.get(`${process.env.VUE_APP_API_HOST}/pokemon/${this.$props.poke.name}`)
         .then(({data}) => {  
+          // data.sprites = data.sprites.filter((item) => item)
+          // console.log(data.sprites);
+          
+          
           this.pokeData = data
           setTimeout(() => {
             this.loaded = true
@@ -141,17 +145,14 @@ export default {
         .catch(error => console.log(error))
         
     },
-    computed() {
-      
-    },
     methods: {
-      randomInteger() {
-        let rand = 1 - 0.5 + Math.random() * (this.menu.items.length - 1 + 1)
-        if(rand <= 0 ) rand = 1
-        if(rand >= 3 ) rand = 3
-        rand =  Math.round(rand) - 1
-        return this.menu.items[Math.round(rand)]
-      }
+      // randomInteger() {
+      //   let rand = 1 - 0.5 + Math.random() * (this.menu.items.length - 1 + 1)
+      //   if(rand <= 0 ) rand = 1
+      //   if(rand >= 3 ) rand = 3
+      //   rand =  Math.round(rand) - 1
+      //   return this.menu.items[Math.round(rand)]
+      // }
     },
     components: {
       AppPreloader,
