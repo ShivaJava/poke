@@ -17,7 +17,9 @@
           v-for="poke in GET_POKEMON"
           v-bind:key="poke.name"
         >
-          <PokeCard v-bind:poke="poke" />
+          <PokeCard 
+            v-bind:poke="poke"
+            v-bind:route-path="`pokemon`" />
         </b-col>
       </b-row>
     </b-container>

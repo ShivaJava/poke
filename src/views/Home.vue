@@ -35,23 +35,13 @@
           v-for="poke in GET_POKEMON"
           v-bind:key="poke.name"
         >
-          <PokeCard v-bind:poke="poke" />
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col class="d-flex align-items-center justify-content-between">
-          <h1 class="mb-3 h3 text-uppercase">Abilities</h1>
-          <b-button 
-            class="mb-3"
-            size="md"
-            variant="outline-danger"
-            to="/pokemon/page/1"
-          >
-            See more
-          </b-button>
+          <PokeCard 
+            v-bind:poke="poke"
+            v-bind:route-path="`poke`" />
         </b-col>
       </b-row>
     </b-container>
+    <router-view />
   </div>
 </template>
 

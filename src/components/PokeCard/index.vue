@@ -1,103 +1,50 @@
 <template>
   <b-card 
     no-body
-    bg-variant="warning"
-    class="PokeCard mb-4 border-dark"
+    bg-variant="dark"
+    class="PokeCard mb-4 border-0 text-light shadow"
   >
     <b-card-header 
-      class="d-flex align-items-center justify-content-between p-0 pl-2"
+      class="d-flex align-items-center justify-content-between"
       header-bg-variant="danger"
     > 
-      <b-dropdown
-        variant="outline-light"
-        toggle-class="bg-danger text-light"
-        menu-class="bg-warning shadow"
-        no-caret
-      > 
-        <template v-slot:button-content>
-          {{ poke.name }} <b-icon icon="three-dots-vertical" class="ml-2" /> 
-        </template>
-        <b-dropdown-item
-          v-for="item in menu.items"
-          v-on:click="menu.active = item"
-          active-class="bg-danger text-light"
-          :active="menu.active === item"
-          v-bind:key="item"
-          variant="dark"
-        >
-          {{item}}
-        </b-dropdown-item>
-      </b-dropdown>
-      <div class="position-relative d-flex align-items-center justify-content-center" style="width: 60px; height: 55px;">
-        <AppPreloader 
-          v-if="!loaded"/>
-        <b-img 
-          v-if="loaded && pokeData"
-          v-bind:src="pokeData.sprites.front_default"
-          width="50" />
-      </div>
+      <h5 class="h6 text-light text-uppercase m-0">{{poke.name}}</h5>
     </b-card-header>
     <b-card-body
-      class="position-relative px-3 py-2"
-      style="min-height: 250px"
+      class="position-relative px-3 py-2 pb-3"
+      style="min-height: 300px"
     >
       <AppPreloader v-if="!loaded"/>
       <template v-if="loaded && pokeData">
-
-        <div class="h5 text-uppercase">
-          {{menu.active}}
-        </div>
-
-        <div v-if="menu.active === 'stats'">
-          <template
-            v-for="item in pokeData.stats"
-          > 
-            <div
+          <b-img 
+            v-if="pokeData.sprites.front_default"
+            class="border border-light rounded mb-2"
+            v-bind:src="pokeData.sprites.front_default" />
+          <!-- <h5>Stats</h5> -->
+          <ul class="pl-4 mb-0">
+            <li 
+              v-for="item in pokeData.stats"
               v-bind:key="item.stat.name"
             >
-              {{item.stat.name}} : {{item.base_stat}}
-            </div>
-          </template>
-        </div>
-
-        <div v-if="menu.active === 'abilities'">
-          <template
-            v-for="(item, index) in pokeData.abilities"
-          > 
-            <b-btn 
-              size="sm"
-              variant="outline-dark"
-              class="mr-1 mb-1"
-              v-bind:key="index"
-            >
-              {{item.ability.name}}
-            </b-btn>
-          </template>
-        </div>
-
-        <Hooper 
-          v-if="menu.active === 'sprites'"
-          class="border border-dark rounded"
-        > 
-          <template v-for="(item, index) in pokeData.sprites">
-            <slide
-              v-if="item"
-              class="d-flex align-items-center justify-content-center"
-              v-bind:key="index"
-            > 
-              <b-img 
-                width="150px"
-                :src="item" />
-            </slide>
-          </template>
-          <hooper-navigation slot="hooper-addons"></hooper-navigation>
-        </Hooper>
+              {{item.stat.name}} 
+              <b-badge 
+                class="ml-1"
+                variant="warning"
+              >
+                {{item.base_stat}}
+              </b-badge>
+            </li>
+          </ul>
       </template>
     </b-card-body>
-    <b-card-footer>
+    <b-card-footer
+      class="p-1"
+      footer-bg-variant="warning"
+    >
       <b-btn
-        block
+        block 
         variant="outline-dark"
+        v-bind:to="`/${routePath}/${poke.name}`"
       >
         More
       </b-btn>
@@ -107,11 +54,6 @@
 
 <script>
 import axios from 'axios'
-import {
-  Hooper,
-  Slide,
-  Navigation as HooperNavigation
-} from 'hooper'
 import AppPreloader from '../AppPreloader/'
 
 export default {
@@ -120,23 +62,12 @@ export default {
       return {
         pokeData: null,
         loaded: false,
-        menu: {
-          active: 'sprites',
-          items: ['stats', 'abilities', 'sprites']
-        }
       }
     },
-    props: ['poke'],
-    mounted() {
-      this.menu.active = this.randomInteger()
-    },
+    props: ['poke', 'route-path'],
     created() {
       axios.get(`${process.env.VUE_APP_API_HOST}/pokemon/${this.$props.poke.name}`)
-        .then(({data}) => {  
-          // data.sprites = data.sprites.filter((item) => item)
-          // console.log(data.sprites);
-          
-          
+        .then(({data}) => {          
           this.pokeData = data
           setTimeout(() => {
             this.loaded = true
@@ -145,20 +76,8 @@ export default {
         .catch(error => console.log(error))
         
     },
-    methods: {
-      // randomInteger() {
-      //   let rand = 1 - 0.5 + Math.random() * (this.menu.items.length - 1 + 1)
-      //   if(rand <= 0 ) rand = 1
-      //   if(rand >= 3 ) rand = 3
-      //   rand =  Math.round(rand) - 1
-      //   return this.menu.items[Math.round(rand)]
-      // }
-    },
     components: {
       AppPreloader,
-      Hooper,
-      Slide,
-      HooperNavigation
     }
 }
 </script>
