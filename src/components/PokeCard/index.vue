@@ -44,7 +44,7 @@
       <b-btn
         block 
         variant="outline-dark"
-        v-bind:to="`/${routePath}/${poke.name}`"
+        v-bind:to="{path: `/${routePath}/${poke.name}`}"
       >
         More
       </b-btn>
