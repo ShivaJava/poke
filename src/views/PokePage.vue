@@ -1,7 +1,7 @@
 <template>
     <div class="PokePage">
         <b-container
-            v-if="pokeData && loaded"
+            v-if="pokeData"
             class="pt-5"
         >
             <b-row>
@@ -31,7 +31,6 @@ export default {
       return {
         pokeData: null,
         pokeSprites: null,
-        loaded: false,
       }
     },
     created() {
@@ -46,13 +45,8 @@ export default {
                 cleanPokeSprites[item] = itemValue
             }    
             this.pokeSprites = cleanPokeSprites
-            
-            setTimeout(() => {
-                this.loaded = true
-            }, 500) 
         })
         .catch(error => console.log(error))
-        
     },
 }
 </script>
