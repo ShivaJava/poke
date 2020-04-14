@@ -30,7 +30,10 @@ export default {
         return pageNum === 1 ? '1' : `${pageNum}`
       },
       getPageData({offset, limit}) {
-        this.$store.dispatch(this.$props.ACTION_NAME, {offset: offset || (this.$route.params.number - 1) * this.$store.getters.GET_PAGE.limit, limit: limit || this.$store.getters.GET_PAGE.limit} )
+        const pageOffset = offset || (this.$route.params.number - 1) * this.$store.getters.GET_PAGE.limit
+        const pageLimit  = limit || this.$store.getters.GET_PAGE.limit
+        
+        this.$store.dispatch(this.$props.ACTION_NAME, {offset: pageOffset, limit: pageLimit} )
       }
     },
 }

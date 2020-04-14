@@ -37,6 +37,9 @@ import AppPagination from '../components/AppPagination/'
 
 export default {
   name: 'Pokemon',
+  mounted() {
+    this.$store.dispatch('GET_POKEMON_REQUEST', { offset: 0, limit: 20} )
+  },
   computed: {
     ...mapGetters(['GET_POKEMON'])
   },

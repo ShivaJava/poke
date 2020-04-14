@@ -20,8 +20,8 @@
                 </b-nav-item>
                 <b-nav-item 
                     class="text-uppercase font-weight-bold"
-                    to="/pokemon/page/1">
-                    Pokemons
+                    to="/about">
+                    About
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
