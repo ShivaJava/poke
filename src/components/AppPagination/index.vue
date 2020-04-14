@@ -8,10 +8,10 @@
     >
       <b-pagination-nav 
         class="AppPagination"
-        align="center"
+        align="left"
         v-bind:size="size || 'md'"
         v-bind:link-gen="linkGen" 
-        v-bind:limit="25"
+        v-bind:limit="10"
         v-bind:number-of-pages="$store.getters.GET_PAGE.total" 
         v-on:change="getPageData"
         use-router />

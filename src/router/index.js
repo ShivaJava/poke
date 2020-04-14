@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import About from '../views/About.vue'
 import PokePage from '../views/PokePage.vue'
 import Pokemon from '../views/Pokemon.vue'
 import PokeModal from '../components/PokeModal/'
@@ -29,6 +30,11 @@ const routes = [
     path: '/pokemon/page/:number',
     name: 'Pokemon',
     component: Pokemon
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   }
 ]
 

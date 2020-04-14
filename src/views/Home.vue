@@ -72,9 +72,14 @@ export default {
     &__preview {
       box-sizing: border-box;
       padding: {
-        top: 70px;
-        bottom: 500px;
+        bottom: 80px;
       }
+      @media (min-width: 768px) {
+        padding: {
+          top: 70px;
+          bottom: 500px;
+        }
+      } 
       background-image: url('../assets/images/prewiew_bg.png');
       background-size: cover;
       background-position: bottom center;
